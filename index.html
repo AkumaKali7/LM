@@ -4,13 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Website</title>
+    <title>Personalized Report Generator</title>
     <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </head>
   <body>
     <main>
-        <h1>Welcome to My Website</h1>  
+      <h1>📋 Personalized Report Generator</h1>
+      <p class="subtitle">Answer a few questions and get a customized PDF report!</p>
+      
+      <form id="quizForm">
+        <!-- Section 1: Industry -->
+        <div class="question-section">
+          <h2>1. What industry are you in?</h2>
+          <div class="options">
+            <label class="option-card">
+              <input type="radio" name="industry" value="technology" required>
+              <span class="option-content">
+                <span class="option-icon">💻</span>
+                <span class="option-label">Technology</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="industry" value="healthcare">
+              <span class="option-content">
+                <span class="option-icon">🏥</span>
+                <span class="option-label">Healthcare</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="industry" value="finance">
+              <span class="option-content">
+                <span class="option-icon">💰</span>
+                <span class="option-label">Finance</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="industry" value="education">
+              <span class="option-content">
+                <span class="option-icon">📚</span>
+                <span class="option-label">Education</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Section 2: Company Size -->
+        <div class="question-section">
+          <h2>2. What is your company size?</h2>
+          <div class="options">
+            <label class="option-card">
+              <input type="radio" name="size" value="startup" required>
+              <span class="option-content">
+                <span class="option-icon">🌱</span>
+                <span class="option-label">Startup (1-10 employees)</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="size" value="small">
+              <span class="option-content">
+                <span class="option-icon">🏢</span>
+                <span class="option-label">Small Business (11-50)</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="size" value="medium">
+              <span class="option-content">
+                <span class="option-icon">🏭</span>
+                <span class="option-label">Medium (51-500)</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="size" value="enterprise">
+              <span class="option-content">
+                <span class="option-icon">🏙️</span>
+                <span class="option-label">Enterprise (500+)</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Section 3: Main Goal -->
+        <div class="question-section">
+          <h2>3. What is your main goal?</h2>
+          <div class="options">
+            <label class="option-card">
+              <input type="radio" name="goal" value="growth" required>
+              <span class="option-content">
+                <span class="option-icon">📈</span>
+                <span class="option-label">Business Growth</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="goal" value="efficiency">
+              <span class="option-content">
+                <span class="option-icon">⚡</span>
+                <span class="option-label">Improve Efficiency</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="goal" value="innovation">
+              <span class="option-content">
+                <span class="option-icon">💡</span>
+                <span class="option-label">Drive Innovation</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="goal" value="compliance">
+              <span class="option-content">
+                <span class="option-icon">✅</span>
+                <span class="option-label">Ensure Compliance</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Section 4: Budget Range -->
+        <div class="question-section">
+          <h2>4. What is your budget range?</h2>
+          <div class="options">
+            <label class="option-card">
+              <input type="radio" name="budget" value="low" required>
+              <span class="option-content">
+                <span class="option-icon">💵</span>
+                <span class="option-label">$1,000 - $5,000</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="budget" value="medium">
+              <span class="option-content">
+                <span class="option-icon">💰</span>
+                <span class="option-label">$5,000 - $25,000</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="budget" value="high">
+              <span class="option-content">
+                <span class="option-icon">💎</span>
+                <span class="option-label">$25,000 - $100,000</span>
+              </span>
+            </label>
+            <label class="option-card">
+              <input type="radio" name="budget" value="unlimited">
+              <span class="option-content">
+                <span class="option-icon">🚀</span>
+                <span class="option-label">$100,000+</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="generate-btn">📄 Generate My PDF Report</button>
+      </form>
+
+      <div id="loading" class="hidden">
+        <div class="spinner"></div>
+        <p>Generating your personalized report...</p>
+      </div>
     </main>
     <script src="index.js"></script>
   </body>
